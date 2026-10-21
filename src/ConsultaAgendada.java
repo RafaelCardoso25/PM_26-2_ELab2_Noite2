@@ -67,7 +67,9 @@ public class ConsultaAgendada extends Consulta {
 			hora = LocalDateTime.now().plusDays(ANTECEDENCIA_MINIMA);
 		super(paciente, hora, espec);
 		
-		//TODO: calcular desconto, se for o caso.
+		if (dias > ANTECEDENCIA_DESCONTO) {
+			valorDesconto = especialidade.valor() * PCT_DESCONTO;
+		}
 
 	}
 

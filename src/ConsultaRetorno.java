@@ -46,8 +46,8 @@ public class ConsultaRetorno extends Consulta {
 	 * @param original consulta original da qual este é o retorno
 	 */
 	public ConsultaRetorno(LocalDateTime hora, Consulta original) {
-		//TODO
-		super(null, null, null);
+		super(original.nomePaciente,hora,original.especialidade);
+		this.consultaAnterior = original;
 	}
 
 	/**
@@ -55,8 +55,12 @@ public class ConsultaRetorno extends Consulta {
 	 * @return valor da consulta de retorno (atualmente, {@code 0})
 	 */
 	public double valorConsulta() {
-		//TODO
-		return 0;
+		if (!horario.isBefore(horario) && (!horario.isAfter(consultaAnterior.horario.plusDays(INTERVALO_MAXIMO)))) {
+			return 0;
+		}
+
+
+		return especialidade.valor();
 	}
 
 }

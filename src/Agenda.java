@@ -64,7 +64,7 @@ public class Agenda {
 	public int addConsulta(Consulta consulta) {
 		if(consulta != null)
 			agenda.add(consulta);
-		return  agenda.size();
+		return agenda.size();
 	}
 
 	/**
@@ -74,8 +74,14 @@ public class Agenda {
 	 * @return uma {@code String} com as consultas do dia 
 	 */
 	public String agendaDoDia(LocalDate dia) {
-		//TODO
-		return "";
+		StringBuilder relatorio = new StringBuilder();
+		for (Consulta consulta : agenda){
+			if (consulta.estahNoDia(dia)) {
+				relatorio.append(consulta.toString());
+				relatorio.append("\n");
+			}
+		}
+		return relatorio.toString();
 	}
 
 }
